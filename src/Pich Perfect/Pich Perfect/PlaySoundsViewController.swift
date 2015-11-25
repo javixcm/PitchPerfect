@@ -31,7 +31,10 @@ class PlaySoundsViewController: UIViewController {
                 
             audioEngine = AVAudioEngine()
             audioFile = try  AVAudioFile(forReading: receivedAudio.filePathUrl)
+               
                 
+           let audioSession = AVAudioSession.sharedInstance()
+           try! audioSession.setCategory(AVAudioSessionCategoryPlayback)
             } catch {
                 print(error)
             }

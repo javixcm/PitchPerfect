@@ -61,11 +61,12 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         let filePath = NSURL.fileURLWithPathComponents(pathArray)
         print(filePath)
         
+        
+        
+        
         let session = AVAudioSession.sharedInstance()
-        
-        
-        
-        try! session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        try! session.setCategory(AVAudioSessionCategoryRecord)
+
         
         try! audioRecorder = AVAudioRecorder(URL: filePath!, settings: [:])
         audioRecorder.delegate=self;
@@ -99,6 +100,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             let playSoundsVC:PlaySoundsViewController = segue.destinationViewController as! PlaySoundsViewController
             let data = sender as! RecordedAudio
             playSoundsVC.receivedAudio=data
+            
+            
         }
         
     }
