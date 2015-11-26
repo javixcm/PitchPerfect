@@ -44,18 +44,15 @@ class PlaySoundsViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
     
     @IBAction func actionRabbit(sender: UIButton) {
-        audioEngine.stop()
-        audioEngine.reset()
-
-        audioPlayer.stop();
+        stopAndResetAudioPlayback()
+        
         audioPlayer.rate=1.5;
-         audioPlayer.currentTime=0.0;
+        audioPlayer.currentTime=0.0;
         audioPlayer.volume=1.0
         audioPlayer.play();
     
@@ -63,12 +60,9 @@ class PlaySoundsViewController: UIViewController {
     
     
     @IBAction func playDarthvaderAudio(sender: UIButton) {
-        
         playAudioWithVariablePitch(-1000)
         
     }
-    
-    
     
     
     @IBAction func playAudioChimpunkAudio(sender: UIButton) {
@@ -78,9 +72,7 @@ class PlaySoundsViewController: UIViewController {
     }
     
     func playAudioWithVariablePitch(pitch:Float){
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopAndResetAudioPlayback()
         
         audioPlayer.volume=1
         
@@ -99,13 +91,9 @@ class PlaySoundsViewController: UIViewController {
         
         audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
         
-        
-        
-        
         try! audioEngine.start()
         
-        
-       audioPlayerNode.volume=1.0
+        audioPlayerNode.volume=1.0
         
         audioPlayerNode.play()
     }
@@ -113,31 +101,23 @@ class PlaySoundsViewController: UIViewController {
     
     
     @IBAction func actionStop(sender: UIButton) {
-        audioPlayer.stop();
-        
-    
+        stopAndResetAudioPlayback()
     }
     
     
     @IBAction func eventSoundSlow(sender: UIButton) {
-        audioEngine.stop()
-        audioEngine.reset()
-
-        audioPlayer.stop();
+        stopAndResetAudioPlayback()
         audioPlayer.rate=0.5;
         audioPlayer.currentTime=0.0;
         audioPlayer.play();
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func stopAndResetAudioPlayback() {
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
     }
-    */
+    
+ 
 
 }
