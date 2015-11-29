@@ -35,17 +35,12 @@ class PlaySoundsViewController: UIViewController {
                 
            let audioSession = AVAudioSession.sharedInstance()
            try! audioSession.setCategory(AVAudioSessionCategoryPlayback)
-            } catch {
-                print(error)
+            } catch  let error as NSError{
+                print(error.localizedDescription)
             }
         
       
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
 
     
     @IBAction func actionRabbit(sender: UIButton) {
