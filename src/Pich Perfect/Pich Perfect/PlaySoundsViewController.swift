@@ -49,26 +49,16 @@ class PlaySoundsViewController: UIViewController {
 
     
     @IBAction func actionRabbit(sender: UIButton) {
-        stopAndResetAudioPlayback()
-        
-        audioPlayer.rate=1.5;
-        audioPlayer.currentTime=0.0;
-        audioPlayer.volume=1.0
-        audioPlayer.play();
-    
+        resetEngine(1.5);
     }
     
     
     @IBAction func playDarthvaderAudio(sender: UIButton) {
         playAudioWithVariablePitch(-1000)
-        
     }
     
-    
     @IBAction func playAudioChimpunkAudio(sender: UIButton) {
-        
         playAudioWithVariablePitch(1000)
-        
     }
     
     func playAudioWithVariablePitch(pitch:Float){
@@ -106,11 +96,18 @@ class PlaySoundsViewController: UIViewController {
     
     
     @IBAction func eventSoundSlow(sender: UIButton) {
-        stopAndResetAudioPlayback()
-        audioPlayer.rate=0.5;
+        resetEngine(0.5);
+    }
+    
+    
+    func resetEngine(rate:Float){
+        stopAndResetAudioPlayback();
+        audioPlayer.rate=rate;
         audioPlayer.currentTime=0.0;
         audioPlayer.play();
+
     }
+    
     
     func stopAndResetAudioPlayback() {
         audioPlayer.stop()
